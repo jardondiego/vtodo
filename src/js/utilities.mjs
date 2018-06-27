@@ -1,24 +1,82 @@
-export function createEmptyList (title) {
+export function listEl (title) {
 
     // Validation
     if (title === undefined || title === '') return null
 
-    // Sub-element creation
+    // Elements creation
     let list = document.createElement('div'),
+        titleElement = document.createElement('h3'),
+        editListTitle = document.createElement('form'),
+            newTitle = document.createElement('input'),
+            editTitle = document.createElement('button'),
+        addTodoForm = document.createElement('form'),
+            newTodo = document.createElement('input'),
+            addTodo = document.createElement('button'),
         completedList = document.createElement('ul'),
-        todoList = document.createElement('ul'),
-        addTodoList = document.createElement('form'),
-        newTodo = document.createElement('input'),
-        submit = document.createElement('button')
+        todos = document.createElement('ul')
 
-        list.classList.add('.todo-list')
-        completedList.classList.add('.todo-list__list')
-        todos.classList.add('.todo-list__completed')
-        addTodoList.classList.add('.todo-list__')
+    // Element base setup
+    list.classList.add('todo-list')
+    titleElement.classList.add('todo-list__title')
+    editListTitle.classList.add('todo-list__edit-list-title')
+    editListTitle.classList.add('is-hidden')
+        newTitle.classList.add('todo-list__edit-list-title__new-title')
+        editTitle.classList.add('todo-list__edit-list-title__edit')
+    todos.classList.add('todo-list__todos')
+    completedList.classList.add('todo-list__done')
+    addTodoForm.classList.add('todo-list__add-todo')
+        newTodo.classList.add('todo-list__add-todo__new-title')
+        addTodo.classList.add('todo-list__add-todo__add')
 
+    titleElement.innerText = title
+    editTitle.innerText = 'Edit'
+    addTodo.innerText = 'Add'
+    newTitle.value = title
+        
+    // Event Listeners
+    titleElement.addEventListener('click', function (e) {
+        titleElement.style.display = 'none'
+        editListTitle.style.display = 'initial'
+        newTitle.value = e.target.innerText
+        newTitle.focus()
+    })
+
+    newTitle.addEventListener('blur', function (e) {
+        editListTitle.style.display = 'none'
+        titleElement.style.display = 'inline-block'
+        if (newTitle.value === '') return
+        titleElement.innerText = e.target.value
+    })
+
+    editListTitle.addEventListener('submit', function (e) {
+        e.preventDefault()
+        editListTitle.style.display = 'none'
+        titleElement.style.display = 'inline-block'
+        if (newTitle.value.trim() === '') return
+        titleElement.innerText = newTitle.value
+    })
+
+    addTodoForm.addEventListener('submit', function (e) {
+        e.preventDefault()
+        if (e.target.firstElementChild.value === '') return 
+        todos.appendChild(todoEl(e.target.firstElementChild.value))
+        e.target.firstElementChild.value = ''
+    })
+
+    list.appendChild(titleElement)
+    editListTitle.appendChild(newTitle)
+    editListTitle.appendChild(editTitle)
+    list.appendChild(editListTitle)
+    addTodoForm.appendChild(newTodo)
+    addTodoForm.appendChild(addTodo)
+    list.appendChild(addTodoForm)
+    list.appendChild(todos)
+    list.appendChild(completedList)
+
+    return list
 }
 
-export function createTodo (name) {
+export function todoEl (name) {
 
     // Validation against empty or undefined todo name
     if (name === undefined || name === '') return null
@@ -26,21 +84,21 @@ export function createTodo (name) {
     // Creates sub-elements
     let todo = document.createElement('li'),
         check = document.createElement('input'),
+        title = document.createElement('span'),
         editTodo = document.createElement('form'),
             editTodoInput = document.createElement('input'),
             editTodoSubmit = document.createElement('button'),
-        title = document.createElement('span'),
         remove = document.createElement('button')
 
     // Base element set up (classes, properties, etc)
-    todo.classList.add('todo-list__todos__todo')
-        check.classList.add('todo-list__todos__todo__do')
-        title.classList.add('todo-list__todos__todo__title')
-        editTodo.classList.add('todo-list__todos__todo__edit-title')
-            editTodoInput.classList.add('todo-list__lits__todo__edit-title__title')
+    todo.classList.add('todo')
+        check.classList.add('todo__do')
+        title.classList.add('todo__title')
+        editTodo.classList.add('todo__edit-todo-title')
+            editTodoInput.classList.add('todo__edit-todo-title__title')
             editTodoInput.value = name
-            editTodoSubmit.classList.add('todo-list__todos__todo__edit-title__edit')
-        remove.classList.add('todo-list__todos__todo__remove')
+            editTodoSubmit.classList.add('todo__edit-todo-title__edit')
+        remove.classList.add('todo__remove')
         editTodoSubmit.type = 'submit'
         editTodoSubmit.innerText = 'Edit'
         check.type = 'checkbox'
