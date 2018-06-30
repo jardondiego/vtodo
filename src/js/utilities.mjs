@@ -1,4 +1,4 @@
-export function listEl (title) {
+export function listElement (title) {
 
     // Validation
     if (title === undefined || title === '') return null
@@ -59,7 +59,7 @@ export function listEl (title) {
     addTodoForm.addEventListener('submit', function (e) {
         e.preventDefault()
         if (e.target.firstElementChild.value === '') return 
-        todos.appendChild(todoEl(e.target.firstElementChild.value))
+        todos.appendChild(todoElement(e.target.firstElementChild.value))
         e.target.firstElementChild.value = ''
     })
 
@@ -76,7 +76,7 @@ export function listEl (title) {
     return list
 }
 
-export function todoEl (name) {
+export function todoElement (name) {
 
     // Validation against empty or undefined todo name
     if (name === undefined || name === '') return null
@@ -95,6 +95,7 @@ export function todoEl (name) {
         check.classList.add('todo__do')
         title.classList.add('todo__title')
         editTodo.classList.add('todo__edit-todo-title')
+        editTodo.classList.add('is-hidden')
             editTodoInput.classList.add('todo__edit-todo-title__title')
             editTodoInput.value = name
             editTodoSubmit.classList.add('todo__edit-todo-title__edit')
@@ -143,7 +144,11 @@ export function todoEl (name) {
         e.target.style.display = 'none'
         e.target.previousElementSibling.style.display = 'initial'
 
-        if (e.target.firstElementChild.value === undefined || e.target.firstElementChild.value === '') return
+        if (
+            e.target.firstElementChild.value === undefined ||
+            e.target.firstElementChild.value.trim() === ''
+        ) return
+
         e.target.previousElementSibling.innerText = e.target.firstElementChild.value
     })
 
@@ -160,6 +165,4 @@ export function todoEl (name) {
     todo.appendChild(remove)
 
     return todo
-
-
 }
