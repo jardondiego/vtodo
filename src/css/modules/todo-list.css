@@ -1,0 +1,4 @@
+.todo-list__todos,
+.todo-list__done {
+    list-style-type: none;
+}
