@@ -46,6 +46,7 @@ export default function List (title) {
     })
 
     deleteList.addEventListener('click', function (e) {
+        list.parentElement.dispatchEvent(new Event('delete-list'));
         list.remove();
     })
 
