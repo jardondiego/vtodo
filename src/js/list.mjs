@@ -21,8 +21,8 @@ export default function List (title) {
     // Element base setup
     list.classList.add('todo-list')
     titleElement.classList.add('todo-list__title')
+    editListTitle.classList.toggle('todo-list__edit-list-title--is-hidden')
     editListTitle.classList.add('todo-list__edit-list-title')
-    editListTitle.classList.add('is-hidden')
         newTitle.classList.add('todo-list__edit-list-title__new-title')
         editTitle.classList.add('todo-list__edit-list-title__edit')
     todos.classList.add('todo-list__todos')
@@ -32,35 +32,27 @@ export default function List (title) {
         addTodo.classList.add('todo-list__add-todo__add')
 
     titleElement.innerText = title
-    editTitle.innerText = 'Edit'
-    addTodo.innerText = 'Add'
-    deleteList.innerText = 'Delete'
+    editTitle.innerText = '✏'
+    addTodo.innerText = '➕'
+    deleteList.innerText = '✖'
     newTitle.value = title
         
     // Event Listeners
     titleElement.addEventListener('click', function (e) {
-        titleElement.style.display = 'none'
-        editListTitle.style.display = 'initial'
+        titleElement.classList.toggle('todo-list__title--is-hidden')
+        editListTitle.classList.toggle('todo-list__edit-list-title--is-hidden')
         newTitle.value = e.target.innerText
         newTitle.focus()
     })
 
     deleteList.addEventListener('click', function (e) {
-        list.parentElement.dispatchEvent(new Event('delete-list'));
         list.remove();
-    })
-
-    newTitle.addEventListener('blur', function (e) {
-        editListTitle.style.display = 'none'
-        titleElement.style.display = 'inline-block'
-        if (newTitle.value === '') return
-        titleElement.innerText = e.target.value
     })
 
     editListTitle.addEventListener('submit', function (e) {
         e.preventDefault()
-        editListTitle.style.display = 'none'
-        titleElement.style.display = 'inline-block'
+        titleElement.classList.toggle('todo-list__title--is-hidden')
+        editListTitle.classList.toggle('todo-list__edit-list-title--is-hidden')
         if (newTitle.value.trim() === '') return
         titleElement.innerText = newTitle.value
     })
@@ -73,10 +65,10 @@ export default function List (title) {
     })
 
     list.appendChild(titleElement)
-    list.appendChild(deleteList)
     editListTitle.appendChild(newTitle)
     editListTitle.appendChild(editTitle)
     list.appendChild(editListTitle)
+    list.appendChild(deleteList)
     addTodoForm.appendChild(newTodo)
     addTodoForm.appendChild(addTodo)
     list.appendChild(addTodoForm)
