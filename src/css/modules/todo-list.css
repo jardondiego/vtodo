@@ -1,4 +1,13 @@
 .todo-list__todos,
 .todo-list__done {
     list-style-type: none;
+    padding-left: 0.5rem;
+}
+
+.todo-list__edit-list-title--is-hidden {
+    display: none;
+}
+
+.todo-list__title--is-hidden {
+    display: none;
 }
