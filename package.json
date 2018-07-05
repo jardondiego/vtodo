@@ -1,4 +1,10 @@
 {
+  "scripts": {
+    "webpack-dev":"webpack --watch --mode development",
+    "serve":"serve dist/ --port 80",
+    "serve-tls":"serve dist/ --port 443 --ssl",
+    "build": "webpack --mode production"
+  },
   "dependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
