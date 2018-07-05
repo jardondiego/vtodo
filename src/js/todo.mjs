@@ -27,7 +27,7 @@ export default function Todo (name) {
         check.type = 'checkbox'
         title.innerText = name
         editTodo.type = 'text'
-        remove.innerText = 'Delete'
+        remove.innerText = '✖'
 
     // Event-listeners
 
