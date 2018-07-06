@@ -21,6 +21,7 @@ export default function List (title) {
     // Element base setup
     list.classList.add('todo-list')
     titleElement.classList.add('todo-list__title')
+    deleteList.classList.add('todo-list__delete')
     editListTitle.classList.toggle('todo-list__edit-list-title--is-hidden')
     editListTitle.classList.add('todo-list__edit-list-title')
         newTitle.classList.add('todo-list__edit-list-title__new-title')
@@ -36,6 +37,7 @@ export default function List (title) {
     addTodo.innerText = '➕'
     deleteList.innerText = '✖'
     newTitle.value = title
+    newTodo.placeholder = 'Todo'
         
     // Event Listeners
     titleElement.addEventListener('click', function (e) {
@@ -46,7 +48,7 @@ export default function List (title) {
     })
 
     deleteList.addEventListener('click', function (e) {
-        list.remove();
+        if (confirm('Are you sure?')) list.remove();
     })
 
     editListTitle.addEventListener('submit', function (e) {
