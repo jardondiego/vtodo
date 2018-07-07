@@ -37,7 +37,7 @@ export default function List (title) {
     addTodo.innerText = '➕'
     deleteList.innerText = '✖'
     newTitle.value = title
-    newTodo.placeholder = 'Todo'
+    newTodo.placeholder = 'Do the laundry...'
         
     // Event Listeners
     titleElement.addEventListener('click', function (e) {
