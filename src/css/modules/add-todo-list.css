@@ -1,0 +1,22 @@
+.add-todo-list {
+    display: flex;
+}
+
+.add-todo-list__list-title {
+    border: none;
+    border-radius: 0.25rem;
+    width: 100%;
+}
+
+.add-todo-list__add-list {
+    background-color: transparent;
+
+    border: none;
+    border-radius: 0.25rem;
+    margin-left: 0.5rem;
+    padding: 0.25rem;
+}
+
+.add-todo-list__add-list:focus {
+    border: 1px solid gray;
+}
