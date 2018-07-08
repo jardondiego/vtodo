@@ -61,9 +61,9 @@ export default function List (title) {
 
     addTodoForm.addEventListener('submit', function (e) {
         e.preventDefault()
-        if (e.target.firstElementChild.value === '') return 
+        if (newTodo.value === '') return 
         todos.appendChild(Todo(e.target.firstElementChild.value))
-        e.target.firstElementChild.value = ''
+        newTodo.value = ''
     })
 
     list.appendChild(titleElement)
