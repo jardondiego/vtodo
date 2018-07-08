@@ -45,8 +45,8 @@ export default function Todo (name) {
     title.addEventListener('click', function (e) {
         title.classList.toggle('todo__title--is-hidden')
         editTodo.classList.toggle('todo__edit-todo-title--is-hidden')
-        e.target.nextElementSibling.firstElementChild.value = e.target.innerText
-        e.target.nextElementSibling.firstElementChild.focus()
+        editTodoInput.value = e.target.innerText
+        editTodoInput.focus()
     })
 
     // On input blur hide form
@@ -56,27 +56,31 @@ export default function Todo (name) {
 
         if (e.target.value === undefined || e.target.value === '') return
 
-        e.target.parentElement.previousElementSibling.innerText = e.target.value
+        title.innerText = e.target.value
+    })
+
+    editTodoInput.addEventListener('keypress', function (e) {
+        if (e.keyCode === 13) editTodo.dispatchEvent(new Event('submit'));
     })
 
     // On submit hide form
     editTodo.addEventListener('submit', function (e) {
         e.preventDefault()
         
-        e.target.style.display = 'none'
-        e.target.previousElementSibling.style.display = 'initial'
+        editTodo.classList.toggle('todo__edit-todo-title--is-hidden')
+        title.classList.toggle('todo__title--is-hidden')
 
         if (
-            e.target.firstElementChild.value === undefined ||
-            e.target.firstElementChild.value.trim() === ''
+            editTodoInput.value === undefined ||
+            editTodoInput.value.trim() === ''
         ) return
 
-        e.target.previousElementSibling.innerText = e.target.firstElementChild.value
+        title.innerText = editTodoInput.value
     })
 
     // Remove todo
     remove.addEventListener('click', function (e) {
-        e.target.parentElement.remove()
+        todo.remove()
     })
 
     editTodo.appendChild(editTodoInput)
