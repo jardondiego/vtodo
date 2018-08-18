@@ -1,26 +1,22 @@
 import List from './list'
+import Todo from './todo'
 import '../css/index.css'
 
-let addTodoListForm = document.getElementById('add-todo-list')
-let masonry = document.getElementById('content')
-let masonryColumns = Array.from(document.getElementById('content').children)
-
-masonry.addEventListener('rearrange', function (e) {
-    let lists = []
-    masonryColumns.forEach(column => lists.push(...Array.from(column.children)))
-    rearrange(masonryColumns, lists)
-})
-
-masonryColumns.forEach(
-    column => column.addEventListener('delete-list', function (e) {
-        column.parentElement.dispatchEvent(new Event('rearrange'))
-    })
-)
+let addTodoListForm = document.getElementById('add-todo-list'),
+    mainContainer = document.getElementById('container')
 
 addTodoListForm.addEventListener('submit', function (e) {
-    // Validation
     e.preventDefault()
+
+    // Validation 
+    if (e.target.firstElementChild.value.trim() === '') return
     
-    // Reset form
+    mainContainer.appendChild(List(e.target.firstElementChild.value))
+    // Clear input
     e.target.firstElementChild.value = ''
 })
+
+window.onload = function () {
+    mainContainer.appendChild(List('title'))
+    document.querySelector('.todo-list__todos').appendChild(Todo('xd'))
+}

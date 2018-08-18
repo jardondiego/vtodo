@@ -2,5 +2,6 @@
 @import 'layout.css';
 
 /* Modules */
+@import 'modules/add-todo-list.css';
 @import 'modules/todo-list.css';
 @import 'modules/todo.css';
