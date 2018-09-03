@@ -66,6 +66,10 @@ export default function List (title) {
         newTodo.value = ''
     })
 
+    titleElement.addEventListener('blur', (e) => {
+        console.log(e);
+    });
+
     list.appendChild(titleElement)
     editListTitle.appendChild(newTitle)
     editListTitle.appendChild(editTitle)

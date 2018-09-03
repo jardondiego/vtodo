@@ -1,9 +1,16 @@
 .todo-list {
+    align-self: start;
+
     display: flex;
     flex-wrap: wrap;
+    flex: 1 0 0;
     justify-content: center;
     
-    padding: 1rem;
+    padding: 0 1rem;
+}
+
+.todo-list:first-child {
+    margin-top: 1rem;
 }
 
 .todo-list__title {

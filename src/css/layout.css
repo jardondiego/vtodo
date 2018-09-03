@@ -1,3 +1,18 @@
+body {
+    padding: 0 1.5rem;
+    padding-top: 2rem;
+}
+
 @media screen and (min-width: 768px) {
-    
+    body {
+        padding-left: 6rem;
+        padding-right: 6rem;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-columns: max-content;
+        min-height: 0;
+    }
 }
