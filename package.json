@@ -1,7 +1,7 @@
 {
   "scripts": {
     "webpack": "webpack --watch --mode=development",
-    "serve": "serve dist/",
+    "serve": "serve .",
     "build": "webpack --mode production",
     "start": "concurrently \"npm run webpack\" \"npm run serve\""
   },
